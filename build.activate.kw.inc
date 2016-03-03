@@ -36,9 +36,10 @@ function drush_kraftwagen_kw_activate_build($build) {
   if (is_dir($path_build) && is_link($path_build)) {
     drush_shell_exec('rm %s', $root . DIRECTORY_SEPARATOR . $dir_build);
   } elseif (is_dir($path_build)) {
-    drush_log(dt('The directory ./build is NOT a symlink.
-                  Please remove the current ./build directory
-                  or move the ./build directory to ./builds/my-old-build'), 'error');
+    drush_log(dt('The directory !build is NOT a symlink.
+                  Please remove the current !build directory
+                  or move the !build directory to ./builds/my-old-build',
+                  array('!build' => $path_build)),'error');
     return drush_set_error(dt('Could not build in a existing directory.'));
   }
 
